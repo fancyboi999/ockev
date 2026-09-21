@@ -24,9 +24,15 @@ mlx = [
     "mlx>=0.20.0",
     "mlx-lm>=0.20.0"
 ]
+serve = [
+    "fastapi>=0.110.0",
+    "uvicorn>=0.28.0",
+    "pydantic>=2.0.0"
+]
 
 [project.scripts]
 ockev = "ockev.cli:main"
+ockev-serve = "ockev.serve:main"
 
 [tool.setuptools.packages.find]
 include = ["ockev*"]
