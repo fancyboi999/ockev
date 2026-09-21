@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ockev"
+version = "0.1.0"
+description = "Ending the Tomato-Egg Problem in AI Agent Deliverables: 35ms Discriminative Gatekeeper"
+readme = "README.md"
+authors = [{ name = "fancyboi999" }]
+license = { text = "Apache-2.0" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+dependencies = [
+    "transformers>=4.40.0",
+    "torch>=2.0.0"
+]
+
+[project.optional-dependencies]
+mlx = [
+    "mlx>=0.20.0",
+    "mlx-lm>=0.20.0"
+]
+
+[project.scripts]
+ockev = "ockev.cli:main"
