@@ -48,12 +48,10 @@ Ockev was benchmarked on **`TomatoEggBench-120`**, a standardized 120-case real-
 | Model / System | Architecture | Benchmark Accuracy | Violation Recall | Inference Latency | Deployment Mode |
 | :--- | :--- | :---: | :---: | :---: | :--- |
 | **Ockev-3B (Ours)** | Qwen2.5-3B + Pointer Head | **95.8%** (115/120) | **98.5%** | **105.0 ms** | **Local / Private GPU** |
-| **TypeSafe Jev 1.13.0** | Causal MoE + RLCD | 93.3% (112/120) | 96.9% | 250.0 ms* | Cloud API ($42/1B tok) |
+| **TypeSafe Jev 1.13.0** | Causal MoE + RLCD | 93.3% (112/120) | 96.9% | 250.0 ms | Cloud API ($42/1B tok) |
 | **Ockev-1.5B (Ours)** | Qwen2.5-1.5B + Pointer Head | 92.5% (111/120) | 95.4% | **50.8 ms** | **Local / Apple Silicon** |
 | **SemIf Qwen3.5-4B** | Qwen3.5-4B (Logits) | 74.7% (89/120) | 68.0% | 850.0 ms | Local Logits Readout |
 | **ModernBERT-151M** | ModernBERT (Fixed Head) | 25.0% (30/120) | 35.0% | 24.0 ms | Local Embeddings |
-
-*\* Jev latency reflects official server-side inference (~250ms). End-to-end cross-border network API latency typically measures ~5,100ms.*
 
 <div align="center">
   <img src="assets/tomato_egg_bench_breakdown.png" alt="Domain Breakdown" width="850" />
