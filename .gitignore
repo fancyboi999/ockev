@@ -27,3 +27,4 @@ ENV/
 *.bin
 *.safetensors
 .DS_Store
+upload_*.py\nupdate_*.py
