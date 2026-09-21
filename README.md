@@ -10,9 +10,19 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-brightgreen.svg)]()
 [![Hardware](https://img.shields.io/badge/Platform-Apple_Silicon_MLX_%7C_CUDA-orange.svg)]()
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-yellow.svg)](https://huggingface.co/fancyboi999/ockev)
 [![Benchmark](https://img.shields.io/badge/TomatoEggBench--120-95.8%25_Acc-emerald.svg)]()
 
 </div>
+
+---
+
+## Pretrained Weights & Models
+
+| Model | Base Backbone | TomatoEggBench-120 | Apple Silicon (MLX) | CUDA (L40/3090) | Hugging Face Hub |
+| :--- | :--- | :---: | :---: | :---: | :--- |
+| **Ockev-1.5B** | `Qwen/Qwen2.5-1.5B` | 92.5% | **35 ms** | **50 ms** | [🤗 `fancyboi999/ockev`](https://huggingface.co/fancyboi999/ockev) |
+| **Ockev-3B** | `Qwen/Qwen2.5-3B` | **95.8%** | **86 ms** | **105 ms** | [🤗 `fancyboi999/ockev-3b`](https://huggingface.co/fancyboi999/ockev-3b) |
 
 ---
 
@@ -43,7 +53,20 @@ Ockev was benchmarked on **`TomatoEggBench-120`**, a standardized 120-case real-
   <img src="assets/tomato_egg_bench_pareto.png" alt="Pareto Frontier" width="850" />
 </div>
 
-### TomatoEggBench-120 Benchmark Results
+### Systems Comparison: Direct Readout vs. Generative LLM
+
+Why run a discriminative model for agent gates instead of prompting a generative chat model?
+
+| Execution Path | Generated Tokens | Time (ms) | JSON Parsing Failure Risk | Cost / 1M Checks |
+| :--- | :---: | :---: | :---: | :---: |
+| **Ockev-1.5B (Local Pointer Head)** | **0** | **35 ms** | **0% (Pure Softmax)** | **$0.00** |
+| **TypeSafe Jev 1.13.0 (Cloud API)** | 0 | 250 ms | 0% (Typed) | ~$42.00 |
+| **Generative LLM (e.g. GPT-4o-mini)** | 85–140 | 1,450 ms | 1.8% (Malformed JSON) | ~$8.50 |
+| **Autoregressive Local 7B (JSON Mode)** | 90–150 | 1,800 ms | 3.2% | Hardware only |
+
+When an agent executes 100 tool decisions per task, waiting 1.5 seconds per decision turns a 30-second workflow into a 3-minute bottleneck. Ockev eliminates the decoding loop entirely.
+
+---
 
 | Model / System | Architecture | Benchmark Accuracy | Violation Recall | Inference Latency | Deployment Mode |
 | :--- | :--- | :---: | :---: | :---: | :--- |
